@@ -10,28 +10,15 @@
 
 def index():
     result = [] # We will accummulate the result here.
-    for game in db(db.game.id>0).select():
-        return_url = 'https://trends.google.com/trends/explore?geo=US&q={t1}%20{bt},{t2}%20{bt}'.format(t1=game.term1,t2=game.term2,bt=game.base_term)
+    if auth.user is not None:
+        for game in db(db.game.id>0).select():     
+            return_url = 'https://trends.google.com/trends/explore?geo=US&q={t1}%20{bt},{t2}%20{bt}'.format(t1=game.term1,t2=game.term2,bt=game.base_term)
         #print('url: ', return_url)
 
-        game.url = return_url
+            game.url = return_url
         #db.person.update_or_insert(name='John', birthplace='Chicago')
-        result.append(game)
-
-        #start = "2016-10-10"
-        #end   = "2017-10-10"
-
-        #dates = []
-        #trend_data = []
-        #kw = []
-        #kw.append(term_1_str)
-        #kw.append(term_2_str)
-
-        #print('kw: ', kw)
-        #results_df, dates = get_term(kw, start, end)
-
-        #for data in results_df.itertuples():
-        #    trend_data.append(data[1])
+            if(auth.user.email == game.user_email):
+                result.append(game)
         result.reverse()
 
 	

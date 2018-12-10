@@ -10,7 +10,10 @@
 <script>
   var getGamesUrl = "{{=URL('api', 'get_all_games')}}";
   var insertGameUrl = "{{=URL('api', 'insert_game')}}"; 
+  var loggedIn = "{{=URL('api', 'logged_in')}}";
   var get_match_results_url = "{{=URL('api', 'get_match_results')}}";
+  var is_logged_in = "{{='false' if auth.user is None else 'true'}}";
+  var currentUser = "{{='' if auth.user is None else auth.user.email}}";
 </script>
 {{end}}
 
@@ -115,7 +118,6 @@ font-family: "Happy Monkey"
     });
   }
   </script>
-
   <div id="likes" class="googlered center rounded" style="width:800px">
     <button type="button" id="reset">Start A New Game!</button> </br>
   <button type="button" id="team1">Team 1 wins!</button>
@@ -178,6 +180,9 @@ font-family: "Happy Monkey"
         <button class = "large olive" style = "width:800px" v-on:click="showForm = !showForm; showButton = !showButton">New Round</button>
     </div>
 	</div>
+       <!-- <div v-if ="loggedIn">
+		<h3> Please Log In! </h3>
+        </div>-->
         <div v-show="showForm">
 	    <div class = "newform center form_row rounded " style="width:800px"  >
 		<div class = "label quarter"><font color = "Red">
