@@ -4,6 +4,7 @@
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Happy Monkey' rel='stylesheet'>
 <link href="{{=URL('static', 'css/stupid.css')}}" rel="stylesheet" type="text/css">
 <script>
   var getGamesUrl = "{{=URL('api', 'get_all_games')}}";
@@ -13,20 +14,8 @@
 {{end}}
 
 <style>
-p{
-  font-family: "Comic Sans MS"
-}
-
-.base_term{
-   font-family: "Comic Sans MS"
-}
-
-.term1{
-   font-family: "Comic Sans MS"
-}
-
-.term2{
-   font-family: "Comic Sans MS"
+h1{
+  font-family: "Happy Monkey"
 }
 
 .gameoid{
@@ -41,10 +30,23 @@ background-color: rgba(73, 160, 100,1);
 
 body{
 background-image: url("{{=URL('static','images/blk.jpg')}}");
+font-family: "Happy Monkey"
 }
 
 </style>
 <body>
+<div class= center>
+<h1>
+  <span style='color: blue'>T</span>
+  <span style='color: red'>R</span>
+  <span style='color: yellow'>E</span>
+  <span style='color: blue'>N</span>
+  <span style='color: green'>D</span>
+  <span style='color: red'>I</span>
+  <span style='color: yellow'>F</span>
+  <span style='color: blue'>Y</span>
+</h1>
+</div>
 <div id="app" class="display:none">
 	<div v-show="showButton">
         	<button class = "large olive " v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
