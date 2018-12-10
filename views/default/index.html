@@ -33,6 +33,14 @@ margin-right: auto;
 background-color: rgba(73, 160, 100,1);
 }
 
+.bigboy{
+  font-size: 350%;
+}
+
+.googlered{
+  background-color: rgb(212, 58, 64);
+}
+
 body{
 background-image: url("{{=URL('static','images/blk.jpg')}}");
 font-family: "Happy Monkey"
@@ -118,10 +126,49 @@ font-family: "Happy Monkey"
   }
   </script>
 
+  <div id="likes" class="googlered center " style="width:800px">
+    <button type="button" id="reset">Start A New Game!</button> </br>
+  <button type="button" id="team1">Team 1 wins!</button>
+          Team 1: <span class="team1"></span></br>
+  <button type="button" id="team2">Team 2 wins!</button>
+          Team 2:<span class="team2"></span></br>
+  </div>
+  <script type="text/javascript">
+    var clicks1 = 0;
+    var clicks2 = 0
+    if(sessionStorage.getItem("clicks1")){
+      clicks1 = sessionStorage.getItem("clicks1");
+    }
+    if(sessionStorage.getItem("clicks2")){
+      clicks2 = sessionStorage.getItem("clicks2");
+    }
+    $('.team1').html(clicks1);
+    $('.team2').html(clicks2);
+
+    $("#team1").click(function(){ 
+      clicks1++; 
+      $('.team1').html(clicks1);
+      sessionStorage.setItem("clicks1", clicks1);
+    });
+    $("#team2").click(function(){ 
+      clicks2++; 
+      $('.team2').html(clicks2);
+      sessionStorage.setItem("clicks2", clicks2);
+    });
+    $("#reset").click(function(){ 
+      clicks1 = 0; 
+      clicks2 = 0; 
+      $('.team1').html(clicks1);
+      $('.team2').html(clicks2);
+      sessionStorage.setItem("clicks1", clicks1);
+      sessionStorage.setItem("clicks2", clicks2);
+    });
+  </script>
+
   <div class="timer-div center rounded padded" style="width:800px;"> 
     <!-- <div>Hour: <span id="hour"></span></div>
     <div>Minute: <span id="minute"></span></div>-->
-    <div>Second: <span id="seconds"></span></div> 
+    <div>Seconds: <span id="seconds"></span></div> 
 
     <button id="start-btn">Start</button>
     <button id="stop-btn">Stop</button>
@@ -149,7 +196,7 @@ font-family: "Happy Monkey"
 {{for r in rows:}}
 	<div class ="gameoid card" style="width: 800px; height:460px">
   		<div> 
-    			<div class=" padded rounded blue ">
+    			<div class="bigboy padded rounded blue ">
         		<div class="base_term center"><font color="yellow"> Base Term: {{=r['base_term']}}</font></div>
         		<div class="term1 center "><font color = "lime">Term 1: {{=r['term1']}}</font> </div>
 			<div class="vs center "><font color = "red">VS</font></div>
