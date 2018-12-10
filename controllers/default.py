@@ -12,7 +12,7 @@ def index():
     result = [] # We will accummulate the result here.
     for game in db(db.game.id>0).select():
         return_url = 'https://trends.google.com/trends/explore?geo=US&q={t1}%20{bt},{t2}%20{bt}'.format(t1=game.term1,t2=game.term2,bt=game.base_term)
-        print('url: ', return_url)
+        #print('url: ', return_url)
 
         game.url = return_url
         #db.person.update_or_insert(name='John', birthplace='Chicago')
