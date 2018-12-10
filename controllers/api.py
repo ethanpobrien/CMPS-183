@@ -39,8 +39,11 @@ def get_all_games():
 
         game_list.append(game_to_send)
 
-
     return response.json(dict(games=game_list)) # return all movies as a JSON object back to JavaScript
+
+def clear_games():
+    games = db(db.game).delete()
+    redirect(URL('default', 'index'))
 #def get_trend_term(request):
 #'''
 #def
