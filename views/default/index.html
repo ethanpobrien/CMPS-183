@@ -23,10 +23,12 @@ h1{
 width: 70%;
 margin-left: auto;
 margin-right: auto;
+margin-bottom: 50px; 
 }
 
 .timer-div{
   background-color: rgb(253, 182, 29);
+  margin-bottom: 50px; 
 }
 
 .newform{
@@ -54,7 +56,9 @@ font-family: "Happy Monkey"
 </div>
 <div id="app" class="display:none">
 	<div v-show="showButton">
-        	<button class = "large olive " v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
+	<div class="center" >
+        	<button class = "large olive" style = "width:800px" v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
+	</div>
         <div v-show="showForm">
 	    <div class = "newform center form_row rounded " style="width:800px"  >
 		<div class = "label quarter"><font color = "Red">
@@ -70,7 +74,7 @@ font-family: "Happy Monkey"
 		</font></div>
         	<input v-model="newTerm2" type="text" placeholder="Term 2"/><br><br>
 	   <div class = "submit">
-		<button v-on:click="insertGame">
+		<button class = "center padded rounded lime " v-on:click="insertGame">
 			Submit</button>
 	   </div>
 	</div>
