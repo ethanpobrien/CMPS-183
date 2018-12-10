@@ -44,6 +44,8 @@ def get_all_games():
 def clear_games():
     games = db(db.game).delete()
     redirect(URL('default', 'index'))
+
+
 #def get_trend_term(request):
 #'''
 #def

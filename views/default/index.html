@@ -48,6 +48,19 @@ background-image: url("{{=URL('static','images/blk.jpg')}}");
 font-family: "Happy Monkey"
 }
 
+#some-element {
+  border: 1px solid #ccc;
+  display: none;
+  font-size: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  text-transform: uppercase;
+}
+
+#some-div:hover #some-element {
+  display: block;
+}
+
 </style>
 <body>
 <div class= center>
@@ -62,6 +75,30 @@ font-family: "Happy Monkey"
   <span style='color: blue'>Y</span>
 </h1>
 </div>
+
+  <div class="timer-div padded rounded" style="width:400px">
+    <div id="some-div">
+    <h4> Trendify tests your knowledge of current events! </h4>
+    <h5> How to play: </h5>
+      <span id="some-element" style="font-size: 16px">
+        The game is controlled by the TrendsMaster, who picks the base 
+        term and starts the timer. 
+        </br>
+        
+        The two teams have 60 seconds to decide on their term.
+        </br>
+
+        When the timer goes off, the teams must present their term.
+        </br>
+
+        The teams alternate with who presents the term first, as the second term cannot be the same as the first.
+        </br>
+        
+        The TrendsMaster then enters the terms, views the graph average and awards a team the point.
+        </br>
+      </span>
+    </div>
+  </div>
 
   <!-- <div class="gameoid yellow padded rounded">-->
   <script>
