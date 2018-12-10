@@ -141,6 +141,7 @@ font-family: "Happy Monkey"
       }else{
         alert("It's a draw!");
       }
+      window.location="{{=URL('api','clear_games')}}";
       clicks1 = 0; 
       clicks2 = 0; 
       $('.team1').html(clicks1);
