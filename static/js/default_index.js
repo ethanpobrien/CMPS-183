@@ -29,6 +29,8 @@ var insertGame = function() {
     $.post(insertGameUrl, newGame, function(response) {
         newGame['id'] = response.new_game_id;
         app.games.push(newGame);
+	showButton: true; 
+	showForm: false;
         processGames();
         //this.$router.push('epobrien.pythonanywhere.com/trendify/default/index/')
         window.location.href = '/trendify/default/index';
@@ -43,7 +45,9 @@ var app = new Vue({
         newBaseTerm: "",
         newTerm1: "",
         newTerm2: "",
-        games: []
+        games: [],
+	showButton: true, 
+        showForm: false,
     },
     methods: {
         insertGame: insertGame,
