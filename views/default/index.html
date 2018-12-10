@@ -62,32 +62,6 @@ font-family: "Happy Monkey"
   <span style='color: blue'>Y</span>
 </h1>
 </div>
-<div id="app" class="display:none">
-	<div v-show="showButton">
-	<div class="center" >
-        	<button class = "large olive" style = "width:800px" v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
-	</div>
-        <div v-show="showForm">
-	    <div class = "newform center form_row rounded " style="width:800px"  >
-		<div class = "label quarter"><font color = "Red">
-			Base Term: 
-		</font></div>
-		<input v-model="newBaseTerm" type="text" placeholder="Base Term"/><br><br>
-	    <div class = "label quarter"><font color = "blue">
-			Team One's Term: 
-		</font></div>
-        	<input v-model="newTerm1" type ="text" placeholder="Term 1"/><br><br>
-	   <div class = "label quarter"><font color = "yellow">
-			Team Two's Term:
-		</font></div>
-        	<input v-model="newTerm2" type="text" placeholder="Term 2"/><br><br>
-	   <div class = "submit">
-		<button class = "center padded rounded lime " v-on:click="insertGame">
-			Submit</button>
-	   </div>
-	</div>
-       </div>
-    </div>
 
   <!-- <div class="gameoid yellow padded rounded">-->
   <script>
@@ -130,7 +104,7 @@ font-family: "Happy Monkey"
   }
   </script>
 
-  <div id="likes" class="googlered center " style="width:800px">
+  <div id="likes" class="googlered center rounded" style="width:800px">
     <button type="button" id="reset">Start A New Game!</button> </br>
   <button type="button" id="team1">Team 1 wins!</button>
           Team 1: <span class="team1"></span> Points </br>
@@ -179,12 +153,39 @@ font-family: "Happy Monkey"
   <div class="timer-div center rounded padded" style="width:800px;"> 
     <!-- <div>Hour: <span id="hour"></span></div>
     <div>Minute: <span id="minute"></span></div>-->
-    <div>Seconds: <span id="seconds"></span></div> 
+    <div>Seconds: <span id="seconds">60</span></div> 
 
     <button id="start-btn">Start</button>
     <button id="stop-btn">Stop</button>
     <button id="reset-btn">Reset</button>
   </div>
+<div id="app" class="display:none">
+	<div v-show="showButton">
+    <div class="center" >
+        <button class = "large olive" style = "width:800px" v-on:click="showForm = !showForm; showButton = !showButton">New Round</button>
+    </div>
+	</div>
+        <div v-show="showForm">
+	    <div class = "newform center form_row rounded " style="width:800px"  >
+		<div class = "label quarter"><font color = "Red">
+			Base Term: 
+		</font></div>
+		<input v-model="newBaseTerm" type="text" placeholder="Base Term"/><br><br>
+	    <div class = "label quarter"><font color = "blue">
+			Team One's Term: 
+		</font></div>
+        	<input v-model="newTerm1" type ="text" placeholder="Term 1"/><br><br>
+	   <div class = "label quarter"><font color = "yellow">
+			Team Two's Term:
+		</font></div>
+        	<input v-model="newTerm2" type="text" placeholder="Term 2"/><br><br>
+	   <div class = "submit">
+		<button class = "center padded rounded lime " v-on:click="insertGame">
+			Submit</button>
+	   </div>
+	</div>
+       </div>
+    </div>
 
   <!-- <div class="timer-div center rounded padded" style="width:800px;"> 
     <p id="demo"></p>
@@ -205,7 +206,7 @@ font-family: "Happy Monkey"
 
   
 {{for r in rows:}}
-	<div class ="gameoid card" style="width: 800px; height:460px">
+	<div class ="gameoid card" style="width: 800px; height:500px">
   		<div> 
     			<div class="bigboy padded rounded blue ">
         		<div class="base_term center"><font color="yellow"> Base Term: {{=r['base_term']}}</font></div>
