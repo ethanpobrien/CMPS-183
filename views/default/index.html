@@ -4,6 +4,8 @@
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+
 
 <link href="{{=URL('static', 'css/stupid.css')}}" rel="stylesheet" type="text/css">
 <script>
@@ -76,7 +78,57 @@ background-image: url("{{=URL('static','images/blk.jpg')}}");
     </div>
 
   <!-- <div class="gameoid yellow padded rounded">-->
+  <script>
+  window.onload = () => {
+    //let hour = 0;
+    //let minute = 0;
+    let seconds = 60;
+    let totalSeconds = 0;
+
+    let intervalId = null;
+
+    function startTimer() {
+      ++totalSeconds;
+      //hour = Math.floor(totalSeconds /3600);
+      //minute = Math.floor((totalSeconds - hour*3600)/60);
+      //seconds = totalSeconds - (hour*3600 + minute*60);
+      seconds = 60 - totalSeconds;
+
+      //document.getElementById("hour").innerHTML =hour;
+      //document.getElementById("minute").innerHTML =minute;
+      document.getElementById("seconds").innerHTML =seconds;
+    }
+
+    document.getElementById('start-btn').addEventListener('click', () => {
+      intervalId = setInterval(startTimer, 1000);
+    })
+
+    document.getElementById('stop-btn').addEventListener('click', () => {
+      if (intervalId)
+        clearInterval(intervalId);
+    });
+
+
+    document.getElementById('reset-btn').addEventListener('click', () => {
+       totalSeconds = 0;
+       //document.getElementById("hour").innerHTML = '0';
+       //document.getElementById("minute").innerHTML = '0';
+       document.getElementById("seconds").innerHTML = '60';
+    });
+  }
+  </script>
+
   <div class="timer-div center rounded padded" style="width:800px;"> 
+    <!-- <div>Hour: <span id="hour"></span></div>
+    <div>Minute: <span id="minute"></span></div>-->
+    <div>Second: <span id="seconds"></span></div> 
+
+    <button id="start-btn">Start</button>
+    <button id="stop-btn">Stop</button>
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <!-- <div class="timer-div center rounded padded" style="width:800px;"> 
     <p id="demo"></p>
   </div>
   <script>
@@ -91,7 +143,7 @@ background-image: url("{{=URL('static','images/blk.jpg')}}");
         document.getElementById("demo").innerHTML = "EXPIRED";
       }
     }, 1000);
-  </script>
+  </script>-->
 
   
 {{for r in rows:}}
