@@ -1,0 +1,79 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<link href="{{=URL('static', 'css/stupid.css')}}" rel="stylesheet" type="text/css">
+<script>
+  var getGamesUrl = "{{=URL('api', 'get_all_games')}}";
+  var insertGameUrl = "{{=URL('api', 'insert_game')}}"; 
+  var get_match_results_url = "{{=URL('api', 'get_match_results')}}";
+</script>
+{{end}}
+
+<style>
+p{
+  font-family: "Comic Sans MS"
+}
+
+.base_term{
+   font-family: "Comic Sans MS"
+}
+
+.term1{
+   font-family: "Comic Sans MS"
+}
+
+.term2{
+   font-family: "Comic Sans MS"
+}
+
+.gameoid{
+width: 70%;
+margin-left: auto;
+margin-right: auto;
+}
+
+body{
+background-image: url("{{=URL('static','images/blk.jpg')}}");
+}
+
+</style>
+<body>
+  <div id="app">
+
+<!--  <p>
+    <a href="{{=URL('default', 'add_game')}}" class="btn green large rounded">Add Game</a>
+  </p>-->
+
+    <div class="new-game">
+      <input v-model="newBaseTerm" type="text" placeholder="Base Term"/><br><br>
+            <input v-model="newTerm1" type ="text" placeholder="Term 1"/><br><br>
+            <input v-model="newTerm2" type="text" placeholder="Term 2"/><br><br>
+            <button v-on:click="insertGame">Add Game</button>
+    </div><br><br>
+  </div>
+
+  {{for r in rows:}}
+	<div class ="gameoid card" style="width: 800px; height:460px">
+  		<div> 
+    			<div class=" padded rounded blue ">
+        		<div class="base_term "><font color="yellow"  > Base Term: {{=r['base_term']}}</font></div>
+        		<div class="term1"><font color = "yellow">Term 1: {{=r['term1']}}</font> </div>
+        		<div class="term2"><font color = "yellow">Term 2: {{=r['term2']}}</font></div>
+        		<div class="url"></div>
+   		</div>
+ 		<div class = "padded rounded" >
+    			<div>
+    			<a href = "{{=URL('default', 'delete', args=[r['id']])}}" class = "btn red" style="float: right;">
+			<i class="fa fa-trash-o"></i> Delete</a>
+        <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1644_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"{{=r['term1']}} {{=r['base_term']}}","geo":"US","time":"today 12-m"},{"keyword":"{{=r['term2']}} {{=r['base_term']}}","geo":"US","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"geo=US&q=two%20one,thre%20one&date=today 12-m,today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+     			</div>
+   		</div>
+ 	</div>
+</div>
+
+  {{pass}}
+<script src="{{=URL('static','js/default_index.js')}}"></script>
+</body>
