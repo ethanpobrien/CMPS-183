@@ -62,7 +62,7 @@ font-family: "Happy Monkey"
 </div>
 <div id="app" class="display:none">
 	<div v-show="showButton">
-        	<button class = "large olive " v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
+        	<button class = "center large olive" v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
         <div v-show="showForm">
 	    <div class = "newform center form_row rounded " style="width:800px"  >
 		<div class = "label quarter"><font color = "Red">
@@ -129,9 +129,9 @@ font-family: "Happy Monkey"
   <div id="likes" class="googlered center " style="width:800px">
     <button type="button" id="reset">Start A New Game!</button> </br>
   <button type="button" id="team1">Team 1 wins!</button>
-          Team 1: <span class="team1"></span></br>
+          Team 1: <span class="team1"></span> Points </br>
   <button type="button" id="team2">Team 2 wins!</button>
-          Team 2:<span class="team2"></span></br>
+          Team 2: <span class="team2"></span> Points </br>
   </div>
   <script type="text/javascript">
     var clicks1 = 0;
@@ -156,6 +156,13 @@ font-family: "Happy Monkey"
       sessionStorage.setItem("clicks2", clicks2);
     });
     $("#reset").click(function(){ 
+      if(clicks1 > clicks2){
+        alert("Team 1 won the game!");
+      }else if (clicks2>clicks1){
+        alert("Team 2 won the game!");
+      }else{
+        alert("It's a draw!");
+      }
       clicks1 = 0; 
       clicks2 = 0; 
       $('.team1').html(clicks1);
