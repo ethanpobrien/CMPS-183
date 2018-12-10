@@ -83,6 +83,16 @@ font-family: "Happy Monkey"
       //document.getElementById("hour").innerHTML =hour;
       //document.getElementById("minute").innerHTML =minute;
       document.getElementById("seconds").innerHTML =seconds;
+
+      if(seconds==0){
+       alert("OUT OF TIME BUDDY");
+       totalSeconds = 0;
+       //document.getElementById("hour").innerHTML = '0';
+       //document.getElementById("minute").innerHTML = '0';
+       document.getElementById("seconds").innerHTML = '60';
+       if (intervalId)
+         clearInterval(intervalId);
+        }
     }
 
     document.getElementById('start-btn').addEventListener('click', () => {
@@ -96,10 +106,12 @@ font-family: "Happy Monkey"
 
 
     document.getElementById('reset-btn').addEventListener('click', () => {
-       totalSeconds = 0;
-       //document.getElementById("hour").innerHTML = '0';
-       //document.getElementById("minute").innerHTML = '0';
-       document.getElementById("seconds").innerHTML = '60';
+     totalSeconds = 0;
+     //document.getElementById("hour").innerHTML = '0';
+     //document.getElementById("minute").innerHTML = '0';
+     document.getElementById("seconds").innerHTML = '60';
+     if (intervalId)
+       clearInterval(intervalId);
     });
   }
   </script>
