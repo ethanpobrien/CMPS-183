@@ -40,25 +40,40 @@ margin-right: auto;
   background-color: rgb(253, 182, 29);
 }
 
+.newform{
+background-color: rgba(73, 160, 100,1);
+}
+
 body{
 background-image: url("{{=URL('static','images/blk.jpg')}}");
 }
 
 </style>
 <body>
-  <div id="app">
-
-<!--  <p>
-    <a href="{{=URL('default', 'add_game')}}" class="btn green large rounded">Add Game</a>
-  </p>-->
-
-    <div class="new-game">
-      <input v-model="newBaseTerm" type="text" placeholder="Base Term"/><br><br>
-            <input v-model="newTerm1" type ="text" placeholder="Term 1"/><br><br>
-            <input v-model="newTerm2" type="text" placeholder="Term 2"/><br><br>
-            <button v-on:click="insertGame">Add Game</button>
-    </div><br><br>
-  </div>
+<div id="app" class="display:none">
+	<div v-show="showButton">
+        	<button class = "large olive " v-on:click="showForm = !showForm; showButton = !showButton">Add Game</button></div>
+        <div v-show="showForm">
+	    <div class = "newform center form_row rounded " style="width:800px"  >
+		<div class = "label quarter"><font color = "Red">
+			Base Term: 
+		</font></div>
+		<input v-model="newBaseTerm" type="text" placeholder="Base Term"/><br><br>
+	    <div class = "label quarter"><font color = "blue">
+			Team One's Term: 
+		</font></div>
+        	<input v-model="newTerm1" type ="text" placeholder="Term 1"/><br><br>
+	   <div class = "label quarter"><font color = "yellow">
+			Team Two's Term:
+		</font></div>
+        	<input v-model="newTerm2" type="text" placeholder="Term 2"/><br><br>
+	   <div class = "submit">
+		<button v-on:click="insertGame">
+			Submit</button>
+	   </div>
+	</div>
+       </div>
+    </div>
 
   <!-- <div class="gameoid yellow padded rounded">-->
   <div class="timer-div center rounded padded" style="width:800px;"> 
@@ -78,13 +93,15 @@ background-image: url("{{=URL('static','images/blk.jpg')}}");
     }, 1000);
   </script>
 
-  {{for r in rows:}}
+  
+{{for r in rows:}}
 	<div class ="gameoid card" style="width: 800px; height:460px">
   		<div> 
-    			<div class="padded rounded blue">
-        		<div class="base_term "><font color="yellow"  > Base Term: {{=r['base_term']}}</font></div>
-        		<div class="term1"><font color = "yellow">Term 1: {{=r['term1']}}</font> </div>
-        		<div class="term2"><font color = "yellow">Term 2: {{=r['term2']}}</font></div>
+    			<div class=" padded rounded blue ">
+        		<div class="base_term center"><font color="yellow"> Base Term: {{=r['base_term']}}</font></div>
+        		<div class="term1 center "><font color = "lime">Term 1: {{=r['term1']}}</font> </div>
+			<div class="vs center "><font color = "red">VS</font></div>
+        		<div class="term2 center "><font color = "lime">Term 2: {{=r['term2']}}</font></div>
         		<div class="url"></div>
    		</div>
  		<div class = "padded rounded" >
