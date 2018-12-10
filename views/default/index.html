@@ -4,6 +4,7 @@
 <script src="{{=URL('static', 'js/vue.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 <link href="{{=URL('static', 'css/stupid.css')}}" rel="stylesheet" type="text/css">
 <script>
   var getGamesUrl = "{{=URL('api', 'get_all_games')}}";
@@ -35,6 +36,10 @@ margin-left: auto;
 margin-right: auto;
 }
 
+.timer-div{
+  background-color: rgb(253, 182, 29);
+}
+
 body{
 background-image: url("{{=URL('static','images/blk.jpg')}}");
 }
@@ -55,10 +60,28 @@ background-image: url("{{=URL('static','images/blk.jpg')}}");
     </div><br><br>
   </div>
 
+  <!-- <div class="gameoid yellow padded rounded">-->
+  <div class="timer-div center rounded padded" style="width:800px;"> 
+    <p id="demo"></p>
+  </div>
+  <script>
+    var countDownDate = new Date().getTime() + 60000;
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countDownDate - now;
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("demo").innerHTML = seconds + "s ";
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+
   {{for r in rows:}}
 	<div class ="gameoid card" style="width: 800px; height:460px">
   		<div> 
-    			<div class=" padded rounded blue ">
+    			<div class="padded rounded blue">
         		<div class="base_term "><font color="yellow"  > Base Term: {{=r['base_term']}}</font></div>
         		<div class="term1"><font color = "yellow">Term 1: {{=r['term1']}}</font> </div>
         		<div class="term2"><font color = "yellow">Term 2: {{=r['term2']}}</font></div>
